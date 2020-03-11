@@ -10,7 +10,7 @@ export default function About() {
           <br />
           Created on React using new feature React Hooks.
           <br />
-          You can add, delete and mark as complete Todos. Also you have an alert
+          You can add, delete and mark Todos as complete. Also you have an alert
           for whole process with close button and closing timer.
         </p>
         <hr className="my-4" />

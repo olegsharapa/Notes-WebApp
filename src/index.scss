@@ -1,5 +1,21 @@
 @import "~bootstrap/scss/bootstrap";
 
+@media (min-width: 720px) {
+  .wrapper {
+    padding: 0 30px;
+  }
+
+  .list-group {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .wrapper {
+    padding: 0 5px 5px 5px;
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -18,6 +34,10 @@ code {
   margin: 0 auto;
   max-width: 1300px;
 }
+
+// .list-group {
+//   margin-bottom: 2rem;
+// }
 
 .note {
   display: flex;
@@ -62,4 +82,20 @@ code {
 .alert-enter-active {
   transition: opacity 500ms ease-out;
   opacity: 1;
+}
+
+.user-form {
+  // width: 65%;
+  margin: 50px auto;
+}
+
+.error-page-container {
+  background-color: #c7ece9;
+}
+
+.error-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
