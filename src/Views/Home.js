@@ -2,19 +2,16 @@ import React, { useContext } from "react";
 import AddTodo from "../Components/AddTodo";
 import Loading from "../Components/Loading";
 import TodoList from "../Components/TodoList";
-import { FirebaseContext } from "../Context/firebase/firebaseContext";
+import { FirebaseContext } from "../Context/firebase/FirebaseState";
 import { AlertContext } from "../Context/alert/alertContext";
 
 export default function Home() {
-  const { fetchNotes, loading } = useContext(FirebaseContext);
+  const { notes, loading } = useContext(FirebaseContext);
   const { alert } = useContext(AlertContext);
 
   React.useEffect(() => {
-    try {
-      fetchNotes();
-    } catch (error) {
-      console.log(error);
-    } //eslint-disable-next-line
+    notes.fetch();
+    //eslint-disable-next-line
   }, []);
   return (
     <React.Fragment>

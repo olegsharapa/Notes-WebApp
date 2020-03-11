@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
-import { FirebaseContext } from "../Context/firebase/firebaseContext";
+import { FirebaseContext } from "../Context/firebase/FirebaseState";
 
 export default function AddTodo() {
   const [newTodo, setNewTodo] = useState("");
-  const { postNote } = useContext(FirebaseContext);
+  const { notes } = useContext(FirebaseContext);
 
   const addNote = e => {
     e.preventDefault();
-    postNote(newTodo, setNewTodo);
+    notes.add(newTodo, setNewTodo);
   };
 
   return (

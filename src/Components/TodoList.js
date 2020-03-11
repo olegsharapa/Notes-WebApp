@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
-import { FirebaseContext } from "../Context/firebase/firebaseContext";
+import { FirebaseContext } from "../Context/firebase/FirebaseState";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function TodoList() {
   const { notes } = useContext(FirebaseContext);
-  const content = notes.length ? (
-    notes.map((todo, i) => (
+  const content = notes.data.length ? (
+    notes.data.map((todo, i) => (
       <CSSTransition key={todo.id} classNames={"note"} timeout={600}>
         <TodoItem todo={todo} index={i + 1} />
       </CSSTransition>

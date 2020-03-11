@@ -3,7 +3,9 @@ import {
   ADD_NOTE,
   FETCH_NOTES,
   REMOVE_NOTE,
-  TOGGLE_NOTE
+  TOGGLE_NOTE,
+  SET_USER,
+  REMOVE_USER
 } from "./firebaseActions";
 
 const handlers = {
@@ -33,6 +35,16 @@ const handlers = {
   [REMOVE_NOTE]: (state, { payload }) => ({
     ...state,
     notes: state.notes.filter(note => note.id !== payload)
+  }),
+  [SET_USER]: (state, { payload }) => ({
+    ...state,
+    user: payload,
+    loading: false
+  }),
+  [REMOVE_USER]: state => ({
+    ...state,
+    user: null,
+    loading: false
   }),
   DEFAULT: state => state
 };

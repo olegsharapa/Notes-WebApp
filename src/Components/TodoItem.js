@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { FirebaseContext } from "../Context/firebase/firebaseContext";
+import { FirebaseContext } from "../Context/firebase/FirebaseState";
 
 function TodoItem({ todo, index }) {
-  const { toggleNote, removeNote } = useContext(FirebaseContext);
+  const { notes } = useContext(FirebaseContext);
 
   return (
     <React.Fragment>
@@ -13,17 +13,16 @@ function TodoItem({ todo, index }) {
             type="checkbox"
             style={{ marginRight: ".5rem" }}
             checked={todo.complete}
-            onChange={() => toggleNote(todo)}
+            onChange={() => notes.toggle(todo)}
           />
           <strong>{index}</strong>
-          &nbsp;
           <strong>{todo.title}</strong>
           <small>{new Date(todo.date).toLocaleString()}</small>
         </span>
         <button
           type="button"
           className="btn btn-danger"
-          onClick={() => removeNote(todo.id)}
+          onClick={() => notes.remove(todo.id)}
         >
           &times;
         </button>
