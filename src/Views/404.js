@@ -15,7 +15,7 @@ export default function ErrorPage() {
         style={{
           position: "absolute",
           left: "50%",
-          margin: "-50px 0 0 -80px"
+          margin: "-50px 0 0 -80px",
         }}
       >
         <Button
@@ -24,7 +24,7 @@ export default function ErrorPage() {
         >
           Back
         </Button>
-        <Link to="/">
+        <Link to="/" replace>
           <Button style={{ width: "70px" }}>Home</Button>
         </Link>
       </div>

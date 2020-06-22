@@ -11,7 +11,7 @@ export default function AddTodo() {
   };
 
   return (
-    <form className="input-group mb-3" onSubmit={e => addNote(e)}>
+    <form className="input-group mb-3" onSubmit={addNote}>
       <input
         type="text"
         className="form-control"

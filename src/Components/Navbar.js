@@ -1,44 +1,51 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { FirebaseContext } from "../Context/firebase/FirebaseState";
+import routes from "../Router/routes";
 
-export default function NavBar({ routes }) {
-  const { user } = React.useContext(FirebaseContext);
+export default function NavBar({ backgroundColor = "#007bff" }) {
+  const { user, loading } = React.useContext(FirebaseContext);
   const history = useHistory();
-
   // COMPLETE NAVBAR CORRECTLY
-  const renderNavLinks = () => (
-    <>
-      {routes.map(route => (
-        <NavLink
-          key={route.path}
-          className="nav-link"
-          to={route.path}
-          exact={route.isExact}
-        >
-          {route.name}
-        </NavLink>
-      ))}
-    </>
-  );
+  const renderNavLinks = routes
+    .filter((route) => route.isNavBar)
+    .map((route) => (
+      <NavLink
+        key={route.path}
+        className="nav-link"
+        to={route.path}
+        exact={route.isExact}
+      >
+        <span className="material-icons">{route.name}</span>
+      </NavLink>
+    ));
+
+  let logoPath = loading ? "/notepad-logo-animated.gif" : "/notepad-logo.png";
   return (
-    <Navbar bg="primary" variant="dark">
-      <Navbar.Brand href="/">
-        <img
-          src={process.env.PUBLIC_URL + "/favicon.png"}
-          style={{ height: "1.5rem", marginRight: "10px", marginTop: "-4px" }}
+    <Navbar variant="dark" style={{ backgroundColor: backgroundColor }}>
+      <Nav className="mr-auto main-links">{renderNavLinks}</Nav>
+      <Link className="navbar-brand" to="/">
+        <div
+          className="navbar-brand-logo"
+          style={{
+            backgroundImage: `url(${logoPath})`,
+          }}
           alt="logo"
         />
-        Note App
-      </Navbar.Brand>
-      <Nav className="mr-auto">{renderNavLinks()}</Nav>
-      <Nav>
+        <span>Notes</span>
+      </Link>
+      <Nav className="right-side-links">
         {user.data ? (
-          <NavDropdown title={user.data.email} id="nav-dropdown">
+          // FIGURE OUT ABOUT BEST WAY OF PROFILE DROPDOWN
+          <NavDropdown
+            className="profile-links"
+            title={<span className="material-icons">account_circle</span>}
+            id="nav-dropdown"
+          >
             <NavDropdown.Item onClick={() => history.push("/profile")}>
-              Settings
+              {user.data.email}
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={user.signOut}>Sign Out</NavDropdown.Item>

@@ -5,7 +5,9 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export default function TodoList() {
   const { notes } = useContext(FirebaseContext);
-  const content = notes.data.length ? (
+  // console.log("boards state ", notes.boards);
+
+  const todoItems = notes.data.length ? (
     notes.data.map((todo, i) => (
       <CSSTransition key={todo.id} classNames={"note"} timeout={600}>
         <TodoItem todo={todo} index={i + 1} />
@@ -19,7 +21,7 @@ export default function TodoList() {
 
   return (
     <TransitionGroup component="ul" className="list-group">
-      {content}
+      {todoItems}
     </TransitionGroup>
   );
 }

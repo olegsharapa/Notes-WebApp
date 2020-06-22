@@ -1,14 +1,14 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "../Components/Navbar";
+import BackgroundWrapper from "../Components/BackgroundWrapper";
 import Alert from "../Components/Alert";
-import routes from "./Routes";
-import { PrivateRoute, PublicRoute } from "./Helpers";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import routes from "./routes";
+import { PrivateRoute, PublicRoute } from "./helpers";
 
 export default function Routes() {
-  const renderSwitch = () => (
+  const renderSwitch = (
     <Switch>
-      {routes.map(route =>
+      {routes.map((route) =>
         route.isPrivate ? (
           <PrivateRoute
             key={route.path}
@@ -36,11 +36,10 @@ export default function Routes() {
   );
   return (
     <BrowserRouter>
-      <Navbar routes={routes.filter(route => route.isNavBar)} />
-      <div className="wrapper">
+      <BackgroundWrapper>
         <Alert />
-        {renderSwitch()}
-      </div>
+        {renderSwitch}
+      </BackgroundWrapper>
     </BrowserRouter>
   );
 }

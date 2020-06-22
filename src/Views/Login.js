@@ -20,6 +20,7 @@ export default function Login() {
             : user.signUp(email, password);
         }}
       >
+        <h1>Log in to Notes</h1>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input
